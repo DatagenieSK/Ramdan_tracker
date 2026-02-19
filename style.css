@@ -214,4 +214,67 @@ button:hover {
     background-color: var(--gold);
     color: #000;
     transform: rotateY(180deg);
+/* Timings Styles */
+.timing-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.timing-card {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 10px;
+    width: 250px;
+    border: 1px solid var(--gold);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+.time-display {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Zakat Calculator Styles */
+.zakat-form {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 500px;
+    margin: 20px auto 0;
+    border: 1px solid var(--gold);
+    text-align: left;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+}
+
+.input-group input:focus {
+    outline: 2px solid var(--gold);
+}
+
+.zakat-form button {
+    width: 100%;
+    font-size: 1.1rem;
+}
+    
 }
