@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ramadan Companion</title>
+    <title>Ramadan Companion - Home</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
@@ -12,54 +12,24 @@
     <header>
         <h1>🌙 Ramadan Companion</h1>
         <nav>
-            <a href="#tracker">Namaz Tracker</a>
-            <a href="#challenge">30 Days Challenge</a>
-            <a href="#names">99 Names of Allah</a>
+            <a href="index.html">Home</a>
+            <a href="names.html">99 Names of Allah</a>
+            <a href="zakat.html">Zakat Calculator</a>
         </nav>
     </header>
 
     <main>
         <section id="tracker" class="fade-in">
             <h2>Daily Namaz Tracker</h2>
-            <p>Your progress is saved automatically to your browser.</p>
-            <div class="tracker-container" id="namaz-container">
-                </div>
+            <p>Your progress is saved automatically.</p>
+            <div class="tracker-container" id="namaz-container"></div>
             <button id="reset-tracker">Reset Today's Tracker</button>
         </section>
 
         <hr>
 
-        <section id="challenge" class="fade-in">
-            <h2>30 Days Challenge & Duas</h2>
-            <p>Click a day to reveal your challenge and daily dua.</p>
-            <div class="grid-container" id="challenge-grid">
-                </div>
-            
-            <div id="challenge-modal" class="modal">
-                <div class="modal-content">
-                    <span class="close-btn">&times;</span>
-                    <h3 id="modal-day">Day X</h3>
-                    <h4 class="gold-text">Today's Challenge:</h4>
-                    <p id="modal-challenge"></p>
-                    <h4 class="gold-text">Today's Dua:</h4>
-                    <p id="modal-dua" class="arabic"></p>
-                    <p id="modal-translation" class="translation"></p>
-                </div>
-            </div>
-        </section>
-
-        <hr>
-
-        <section id="names" class="fade-in">
-            <h2>Interactive 99 Names of Allah</h2>
-            <p>Hover over (or tap) a card to reveal the meaning.</p>
-            <div class="names-grid" id="names-grid">
-                </div>
-        </section>
-                <hr>
         <section id="timings" class="fade-in">
             <h2>Today's Timings</h2>
-            <p>Live Suhoor and Iftar timings updated daily.</p>
             <div class="timing-container">
                 <div class="timing-card">
                     <h3>Suhoor Ends (Fajr)</h3>
@@ -73,33 +43,24 @@
         </section>
 
         <hr>
-        <section id="zakat" class="fade-in">
-            <h2>Zakat Calculator</h2>
-            <p>Calculate your obligatory 2.5% Zakat easily.</p>
-            <div class="zakat-form">
-                <div class="input-group">
-                    <label>Cash & Bank Savings (₹):</label>
-                    <input type="number" id="cash" placeholder="0">
+
+        <section id="challenge" class="fade-in">
+            <h2>30 Days Challenge & Duas</h2>
+            <div class="grid-container" id="challenge-grid"></div>
+            
+            <div id="challenge-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h3 id="modal-day">Day X</h3>
+                    <h4 class="gold-text">Today's Challenge:</h4>
+                    <p id="modal-challenge"></p>
+                    <h4 class="gold-text">Today's Dua:</h4>
+                    <p id="modal-dua" class="arabic"></p>
+                    <p id="modal-translation" class="translation"></p>
                 </div>
-                <div class="input-group">
-                    <label>Gold & Silver Value (₹):</label>
-                    <input type="number" id="gold" placeholder="0">
-                </div>
-                <div class="input-group">
-                    <label>Business Inventory & Stock (₹):</label>
-                    <input type="number" id="business" placeholder="0">
-                </div>
-                
-                <button onclick="calculateZakat()">Calculate Zakat</button>
-                <h3 class="gold-text" id="zakat-result" style="margin-top: 20px;">Total Zakat Owed: ₹0</h3>
             </div>
         </section>
-        
     </main>
-
-    <footer>
-        <p>May your Ramadan be blessed.</p>
-    </footer>
 
     <script src="script.js"></script>
 </body>
