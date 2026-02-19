@@ -1,76 +1,87 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. NAMAZ TRACKER ---
-    const prayers = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
+    // --- 1. NAMAZ TRACKER (Only runs if on index.html) ---
     const namazContainer = document.getElementById('namaz-container');
-    
-    // Load saved data or create empty object
-    let savedNamaz = JSON.parse(localStorage.getItem('namazTracker')) || {};
+    if (namazContainer) {
+        const prayers = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
+        let savedNamaz = JSON.parse(localStorage.getItem('namazTracker')) || {};
 
-    prayers.forEach(prayer => {
-        const div = document.createElement('div');
-        div.className = 'namaz-card';
-        div.innerHTML = `
-            <h3>${prayer}</h3>
-            <input type="checkbox" id="${prayer}" ${savedNamaz[prayer] ? 'checked' : ''}>
-        `;
-        namazContainer.appendChild(div);
+        prayers.forEach(prayer => {
+            const div = document.createElement('div');
+            div.className = 'namaz-card';
+            div.innerHTML = `
+                <h3>${prayer}</h3>
+                <input type="checkbox" id="${prayer}" ${savedNamaz[prayer] ? 'checked' : ''}>
+            `;
+            namazContainer.appendChild(div);
 
-        // Save on click
-        document.getElementById(prayer).addEventListener('change', (e) => {
-            savedNamaz[prayer] = e.target.checked;
-            localStorage.setItem('namazTracker', JSON.stringify(savedNamaz));
-        });
-    });
-
-    document.getElementById('reset-tracker').addEventListener('click', () => {
-        localStorage.removeItem('namazTracker');
-        window.location.reload();
-    });
-
-    // --- 2. 30 DAYS CHALLENGE & DUAS ---
-    // NOTE: Here are the first 3 days. You can copy this format up to day 30!
-    const ramadanData = [
-        { day: 1, challenge: "Read at least 2 pages of the Quran.", dua: "اللَّهُمَّ أَهِلَّهُ عَلَيْنَا بِالْيُمْنِ وَالْإِيمَانِ، وَالسَّلَامَةِ وَالْإِسْلَامِ", translation: "O Allah, bring it over us with blessing and faith, and security and Islam." },
-        { day: 2, challenge: "Give a small amount to charity (Sadaqah).", dua: "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ", translation: "Our Lord, give us in this world [that which is] good and in the Hereafter [that which is] good and protect us from the punishment of the Fire." },
-        { day: 3, challenge: "Call or text a relative you haven't spoken to in a while.", dua: "رَبِّ اغْفِرْ لِي وَلِوَالِدَيَّ", translation: "My Lord, forgive me and my parents." },
-        // Add more days here: { day: 4, challenge: "...", dua: "...", translation: "..." }
-    ];
-
-    const challengeGrid = document.getElementById('challenge-grid');
-    const modal = document.getElementById('challenge-modal');
-    const closeBtn = document.querySelector('.close-btn');
-
-    // Create a card for all 30 days
-    for(let i = 1; i <= 30; i++) {
-        const dayDiv = document.createElement('div');
-        dayDiv.className = 'day-card';
-        dayDiv.innerText = `Day ${i}`;
-        
-        dayDiv.addEventListener('click', () => {
-            // Find data or show placeholder if not added yet
-            const data = ramadanData.find(d => d.day === i) || { challenge: "Challenge coming soon!", dua: "", translation: "" };
-            
-            document.getElementById('modal-day').innerText = `Ramadan Day ${i}`;
-            document.getElementById('modal-challenge').innerText = data.challenge;
-            document.getElementById('modal-dua').innerText = data.dua;
-            document.getElementById('modal-translation').innerText = data.translation;
-            
-            modal.style.display = 'flex';
+            document.getElementById(prayer).addEventListener('change', (e) => {
+                savedNamaz[prayer] = e.target.checked;
+                localStorage.setItem('namazTracker', JSON.stringify(savedNamaz));
+            });
         });
 
-        challengeGrid.appendChild(dayDiv);
+        document.getElementById('reset-tracker').addEventListener('click', () => {
+            localStorage.removeItem('namazTracker');
+            window.location.reload();
+        });
     }
 
-    // Close Modal Logic
-    closeBtn.addEventListener('click', () => modal.style.display = 'none');
-    window.addEventListener('click', (e) => {
-        if (e.target == modal) modal.style.display = 'none';
-    });
+    // --- 2. TIMINGS (Only runs if on index.html) ---
+    const suhoorEl = document.getElementById('suhoor-time');
+    if (suhoorEl) {
+        async function fetchTimings() {
+            try {
+                const response = await fetch('https://api.aladhan.com/v1/timingsByCity?city=Kolkata&country=India&method=1');
+                const data = await response.json();
+                if (data.code === 200) {
+                    suhoorEl.innerText = data.data.timings.Fajr;
+                    document.getElementById('iftar-time').innerText = data.data.timings.Maghrib;
+                }
+            } catch (error) {
+                suhoorEl.innerText = "--:--";
+                document.getElementById('iftar-time').innerText = "--:--";
+            }
+        }
+        fetchTimings();
+    }
 
-    // --- 3. 99 NAMES OF ALLAH ---
-    // NOTE: Here are the first 5 names. You can copy this format to add the rest!
-        const namesOfAllah = [
+    // --- 3. 30 DAYS CHALLENGE (Only runs if on index.html) ---
+    const challengeGrid = document.getElementById('challenge-grid');
+    if (challengeGrid) {
+        const ramadanData = [
+            { day: 1, challenge: "Read at least 2 pages of the Quran.", dua: "اللَّهُمَّ أَهِلَّهُ عَلَيْنَا بِالْيُمْنِ وَالْإِيمَانِ...", translation: "O Allah, bring it over us with blessing and faith..." },
+            // Add the rest of your 30 days here
+        ];
+
+        const modal = document.getElementById('challenge-modal');
+        const closeBtn = document.querySelector('.close-btn');
+
+        for(let i = 1; i <= 30; i++) {
+            const dayDiv = document.createElement('div');
+            dayDiv.className = 'day-card';
+            dayDiv.innerText = `Day ${i}`;
+            
+            dayDiv.addEventListener('click', () => {
+                const data = ramadanData.find(d => d.day === i) || { challenge: "Coming soon!", dua: "", translation: "" };
+                document.getElementById('modal-day').innerText = `Ramadan Day ${i}`;
+                document.getElementById('modal-challenge').innerText = data.challenge;
+                document.getElementById('modal-dua').innerText = data.dua;
+                document.getElementById('modal-translation').innerText = data.translation;
+                modal.style.display = 'flex';
+            });
+            challengeGrid.appendChild(dayDiv);
+        }
+
+        closeBtn.addEventListener('click', () => modal.style.display = 'none');
+        window.addEventListener('click', (e) => { if (e.target == modal) modal.style.display = 'none'; });
+    }
+
+    // --- 4. 99 NAMES OF ALLAH (Only runs if on names.html) ---
+    const namesGrid = document.getElementById('names-grid');
+    if (namesGrid) {
+        // Paste your FULL array of 99 names here
+            const namesOfAllah = [
         { arabic: "الرَّحْمَنُ", transliteration: "Ar-Rahman", meaning: "The Beneficent" },
         { arabic: "الرَّحِيمُ", transliteration: "Ar-Raheem", meaning: "The Merciful" },
         { arabic: "الْمَلِكُ", transliteration: "Al-Malik", meaning: "The King / Sovereign" },
@@ -171,58 +182,27 @@ document.addEventListener('DOMContentLoaded', () => {
         { arabic: "الرَّشِيدُ", transliteration: "Ar-Rashid", meaning: "The Guide to the Right Path" },
         { arabic: "الصَّبُورُ", transliteration: "As-Sabur", meaning: "The Patient" }
     ];
-    
-
-    const namesGrid = document.getElementById('names-grid');
-
-    namesOfAllah.forEach(name => {
-        const flipCard = document.createElement('div');
-        flipCard.className = 'flip-card';
-        flipCard.innerHTML = `
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <div class="arabic">${name.arabic}</div>
-                    <strong>${name.transliteration}</strong>
+        
+        namesOfAllah.forEach(name => {
+            const flipCard = document.createElement('div');
+            flipCard.className = 'flip-card';
+            flipCard.innerHTML = `
+                <div class="flip-card-inner">
+                    <div class="flip-card-front"><div class="arabic">${name.arabic}</div><strong>${name.transliteration}</strong></div>
+                    <div class="flip-card-back"><h4>${name.meaning}</h4></div>
                 </div>
-                <div class="flip-card-back">
-                    <h4>${name.meaning}</h4>
-                </div>
-            </div>
-        `;
-        namesGrid.appendChild(flipCard);
-    });
-        // --- 4. DYNAMIC TIMINGS (Aladhan API) ---
-    async function fetchTimings() {
-        try {
-            // Automatically fetching timings via API
-            const response = await fetch('https://api.aladhan.com/v1/timingsByCity?city=Kolkata&country=India&method=1');
-            const data = await response.json();
-            
-            if (data.code === 200) {
-                const timings = data.data.timings;
-                document.getElementById('suhoor-time').innerText = timings.Fajr;
-                document.getElementById('iftar-time').innerText = timings.Maghrib;
-            }
-        } catch (error) {
-            console.error("Error fetching timings", error);
-            document.getElementById('suhoor-time').innerText = "--:--";
-            document.getElementById('iftar-time').innerText = "--:--";
-        }
+            `;
+            namesGrid.appendChild(flipCard);
+        });
     }
-    fetchTimings();
-
-    // --- 5. ZAKAT CALCULATOR ---
-    window.calculateZakat = function() {
-        const cash = parseFloat(document.getElementById('cash').value) || 0;
-        const gold = parseFloat(document.getElementById('gold').value) || 0;
-        const business = parseFloat(document.getElementById('business').value) || 0;
-        
-        // Sum up total wealth and calculate 2.5%
-        const totalWealth = cash + gold + business;
-        const zakat = totalWealth * 0.025; 
-        
-        // Output result formatted to 2 decimal places
-        document.getElementById('zakat-result').innerText = `Total Zakat Owed: ₹${zakat.toFixed(2)}`;
-    };
-    
 });
+
+// --- 5. ZAKAT CALCULATOR (Global function for zakat.html) ---
+window.calculateZakat = function() {
+    const cash = parseFloat(document.getElementById('cash').value) || 0;
+    const gold = parseFloat(document.getElementById('gold').value) || 0;
+    const business = parseFloat(document.getElementById('business').value) || 0;
+    
+    const zakat = (cash + gold + business) * 0.025; 
+    document.getElementById('zakat-result').innerText = `Total Zakat Owed: ₹${zakat.toFixed(2)}`;
+};
