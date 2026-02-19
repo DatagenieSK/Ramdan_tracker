@@ -56,6 +56,45 @@
             <div class="names-grid" id="names-grid">
                 </div>
         </section>
+                <hr>
+        <section id="timings" class="fade-in">
+            <h2>Today's Timings</h2>
+            <p>Live Suhoor and Iftar timings updated daily.</p>
+            <div class="timing-container">
+                <div class="timing-card">
+                    <h3>Suhoor Ends (Fajr)</h3>
+                    <p id="suhoor-time" class="gold-text time-display">Loading...</p>
+                </div>
+                <div class="timing-card">
+                    <h3>Iftar Begins (Maghrib)</h3>
+                    <p id="iftar-time" class="gold-text time-display">Loading...</p>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+        <section id="zakat" class="fade-in">
+            <h2>Zakat Calculator</h2>
+            <p>Calculate your obligatory 2.5% Zakat easily.</p>
+            <div class="zakat-form">
+                <div class="input-group">
+                    <label>Cash & Bank Savings (₹):</label>
+                    <input type="number" id="cash" placeholder="0">
+                </div>
+                <div class="input-group">
+                    <label>Gold & Silver Value (₹):</label>
+                    <input type="number" id="gold" placeholder="0">
+                </div>
+                <div class="input-group">
+                    <label>Business Inventory & Stock (₹):</label>
+                    <input type="number" id="business" placeholder="0">
+                </div>
+                
+                <button onclick="calculateZakat()">Calculate Zakat</button>
+                <h3 class="gold-text" id="zakat-result" style="margin-top: 20px;">Total Zakat Owed: ₹0</h3>
+            </div>
+        </section>
+        
     </main>
 
     <footer>
