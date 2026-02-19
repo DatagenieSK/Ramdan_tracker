@@ -68,14 +68,39 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
         const challengeGrid = document.getElementById('challenge-grid');
         if (challengeGrid) {
-            const ramadanData = [
+                        const ramadanData = [
                 { day: 1, challenge: "Read at least 2 pages of the Quran.", dua: "اللَّهُمَّ أَهِلَّهُ عَلَيْنَا بِالْيُمْنِ وَالْإِيمَانِ، وَالسَّلَامَةِ وَالْإِسْلَامِ", translation: "O Allah, bring it over us with blessing and faith, and security and Islam." },
                 { day: 2, challenge: "Give a small amount to charity (Sadaqah).", dua: "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ", translation: "Our Lord, give us in this world [that which is] good and in the Hereafter [that which is] good and protect us from the punishment of the Fire." },
                 { day: 3, challenge: "Call or text a relative you haven't spoken to in a while.", dua: "رَبِّ اغْفِرْ لِي وَلِوَالِدَيَّ", translation: "My Lord, forgive me and my parents." },
                 { day: 4, challenge: "Help prepare Iftar or clean up afterward.", dua: "اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى", translation: "O Allah, I ask You for guidance, piety, chastity, and self-sufficiency." },
-                { day: 5, challenge: "Memorize a new short Surah or Dua.", dua: "يَا مُقَلِّبَ الْقُلُوبِ ثَبِّتْ قَلْبِي عَلَى دِينِكَ", translation: "O Changer of the hearts, make my heart firm upon Your religion." }
-                // You can continue adding up to day 30 following this exact format!
+                { day: 5, challenge: "Memorize a new short Surah or Dua.", dua: "يَا مُقَلِّبَ الْقُلُوبِ ثَبِّتْ قَلْبِي عَلَى دِينِكَ", translation: "O Changer of the hearts, make my heart firm upon Your religion." },
+                { day: 6, challenge: "Forgive someone who has wronged you in the past.", dua: "اللَّهُمَّ إِنَّكَ عَفُوٌّ تُحِبُّ الْعَفْوَ فَاعْفُ عَنِّي", translation: "O Allah, You are Forgiving and love forgiveness, so forgive me." },
+                { day: 7, challenge: "Feed a fasting person, even if it is just with a date or water.", dua: "أَفْطَرَ عِنْدَكُمُ الصَّائِمُونَ وَأَكَلَ طَعَامَكُمُ الأَبْرَارُ", translation: "May the fasting break their fast with you, and the pious eat your food." },
+                { day: 8, challenge: "Pray 2 Rakaats of Duha (mid-morning) prayer.", dua: "رَبِّ زِدْنِي عِلْمًا", translation: "My Lord, increase me in knowledge." },
+                { day: 9, challenge: "Make sincere Dua for the global Muslim community.", dua: "اللَّهُمَّ أَصْلِحْ أُمَّةَ مُحَمَّدٍ", translation: "O Allah, improve the state of the Ummah of Muhammad." },
+                { day: 10, challenge: "Read the translation and Tafseer of Surah Al-Fatihah.", dua: "رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا", translation: "Our Lord, let not our hearts deviate after You have guided us." },
+                { day: 11, challenge: "Smile at everyone you meet today—it's a form of charity!", dua: "لَا إِلَٰهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ", translation: "There is no deity except You; exalted are You. Indeed, I have been of the wrongdoers." },
+                { day: 12, challenge: "Ensure you pray all 5 obligatory prayers exactly on time.", dua: "رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِنْ ذُرِّيَّتِي", translation: "My Lord, make me an establisher of prayer, and [many] from my descendants." },
+                { day: 13, challenge: "Go the entire day without complaining or arguing.", dua: "اللَّهُمَّ حَسَّنْتَ خَلْقِي فَحَسِّنْ خُلُقِي", translation: "O Allah, just as You have made my physical form beautiful, make my character beautiful." },
+                { day: 14, challenge: "Give up one bad habit for the day.", dua: "اللَّهُمَّ اكْفِنِي بِحَلَالِكَ عَنْ حَرَامِكَ", translation: "O Allah, suffice me with what You have allowed instead of what You have forbidden." },
+                { day: 15, challenge: "Do a random act of kindness for a family member.", dua: "رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ", translation: "Our Lord, grant us from among our spouses and offspring comfort to our eyes." },
+                { day: 16, challenge: "Send Salawat (blessings) upon Prophet Muhammad (PBUH) 100 times.", dua: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ", translation: "O Allah, send blessings upon Muhammad and the family of Muhammad." },
+                { day: 17, challenge: "Wake up 15 minutes earlier than usual for Tahajjud prayer.", dua: "رَبَّنَا ظَلَمْنَا أَنْفُسَنَا وَإِنْ لَمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ الْخَاسِرِينَ", translation: "Our Lord, we have wronged ourselves, and if You do not forgive us and have mercy upon us, we will surely be among the losers." },
+                { day: 18, challenge: "Clean a part of your home or help tidy up the local mosque.", dua: "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ", translation: "O Allah, I seek refuge in You from anxiety and sorrow." },
+                { day: 19, challenge: "Recite SubhanAllah, Alhamdulillah, and Allahu Akbar 33 times after every prayer.", dua: "رَبِّ أَوْزِعْنِي أَنْ أَشْكُرَ نِعْمَتَكَ الَّتِي أَنْعَمْتَ عَلَيَّ", translation: "My Lord, enable me to be grateful for Your favor which You have bestowed upon me." },
+                { day: 20, challenge: "Prepare for the last 10 nights. Set clear goals for Laylatul Qadr.", dua: "اللَّهُمَّ إِنَّكَ عَفُوٌّ تُحِبُّ الْعَفْوَ فَاعْفُ عَنِّي", translation: "O Allah, You are Forgiving and love forgiveness, so forgive me." },
+                { day: 21, challenge: "Write down 5 blessings you are grateful for today.", dua: "رَبَّنَا تَقَبَّلْ مِنَّا إِنَّكَ أَنْتَ السَّمِيعُ الْعَلِيمُ", translation: "Our Lord, accept [this] from us. Indeed You are the Hearing, the Knowing." },
+                { day: 22, challenge: "Read a story about one of the Prophets or the Sahabah.", dua: "يَا مُقَلِّبَ الْقُلُوبِ ثَبِّتْ قَلْبِي عَلَى دِينِكَ", translation: "O Changer of the hearts, make my heart firm upon Your religion." },
+                { day: 23, challenge: "Give charity again, even if it is just a tiny amount.", dua: "اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا وَرِزْقًا طَيِّبًا وَعَمَلًا مُتَقَبَّلًا", translation: "O Allah, I ask You for beneficial knowledge, goodly provision, and acceptable deeds." },
+                { day: 24, challenge: "Spend 10 minutes making unscripted, sincere Dua from your heart.", dua: "رَبَّنَا آتِنَا مِنْ لَدُنْكَ رَحْمَةً وَهَيِّئْ لَنَا مِنْ أَمْرِنَا رَشَدًا", translation: "Our Lord, grant us from Yourself mercy and prepare for us from our affair right guidance." },
+                { day: 25, challenge: "Disconnect from social media for the entire day to focus on worship.", dua: "اللَّهُمَّ بَارِكْ لَنَا فِي أَوْقَاتِنَا", translation: "O Allah, bless our time for us." },
+                { day: 26, challenge: "Make special Dua for those who are sick, struggling, or oppressed.", dua: "أَذْهِبِ الْبَاسَ رَبَّ النَّاسِ، وَاشْفِ أَنْتَ الشَّافِي", translation: "Remove the affliction, O Lord of mankind, and heal, You are the Healer." },
+                { day: 27, challenge: "Perform I'tikaf (isolation for worship) for at least one hour today.", dua: "اللَّهُمَّ إِنِّي أَسْأَلُكَ الْجَنَّةَ وَأَعُوذُ بِكَ مِنَ النَّارِ", translation: "O Allah, I ask You for Paradise and seek refuge in You from the Fire." },
+                { day: 28, challenge: "Plan how you will maintain at least one good habit after Ramadan.", dua: "اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ", translation: "Guide us to the straight path." },
+                { day: 29, challenge: "Ask for forgiveness from anyone you may have hurt this past year.", dua: "اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَٰهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ", translation: "O Allah, You are my Lord, there is none worthy of worship but You. You created me and I am Your slave." },
+                { day: 30, challenge: "Pay your Zakat al-Fitr, celebrate your efforts, and prepare for Eid!", dua: "تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ", translation: "May Allah accept [good deeds] from us and from you." }
             ];
+            
 
             const modal = document.getElementById('challenge-modal');
             const closeBtn = document.querySelector('.close-btn');
