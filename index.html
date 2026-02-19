@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramadan Companion</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <h1>🌙 Ramadan Companion</h1>
+        <nav>
+            <a href="#tracker">Namaz Tracker</a>
+            <a href="#challenge">30 Days Challenge</a>
+            <a href="#names">99 Names of Allah</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="tracker" class="fade-in">
+            <h2>Daily Namaz Tracker</h2>
+            <p>Your progress is saved automatically to your browser.</p>
+            <div class="tracker-container" id="namaz-container">
+                </div>
+            <button id="reset-tracker">Reset Today's Tracker</button>
+        </section>
+
+        <hr>
+
+        <section id="challenge" class="fade-in">
+            <h2>30 Days Challenge & Duas</h2>
+            <p>Click a day to reveal your challenge and daily dua.</p>
+            <div class="grid-container" id="challenge-grid">
+                </div>
+            
+            <div id="challenge-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h3 id="modal-day">Day X</h3>
+                    <h4 class="gold-text">Today's Challenge:</h4>
+                    <p id="modal-challenge"></p>
+                    <h4 class="gold-text">Today's Dua:</h4>
+                    <p id="modal-dua" class="arabic"></p>
+                    <p id="modal-translation" class="translation"></p>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="names" class="fade-in">
+            <h2>Interactive 99 Names of Allah</h2>
+            <p>Hover over (or tap) a card to reveal the meaning.</p>
+            <div class="names-grid" id="names-grid">
+                </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>May your Ramadan be blessed.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
