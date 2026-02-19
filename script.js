@@ -191,5 +191,38 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         namesGrid.appendChild(flipCard);
     });
+        // --- 4. DYNAMIC TIMINGS (Aladhan API) ---
+    async function fetchTimings() {
+        try {
+            // Automatically fetching timings via API
+            const response = await fetch('https://api.aladhan.com/v1/timingsByCity?city=Kolkata&country=India&method=1');
+            const data = await response.json();
+            
+            if (data.code === 200) {
+                const timings = data.data.timings;
+                document.getElementById('suhoor-time').innerText = timings.Fajr;
+                document.getElementById('iftar-time').innerText = timings.Maghrib;
+            }
+        } catch (error) {
+            console.error("Error fetching timings", error);
+            document.getElementById('suhoor-time').innerText = "--:--";
+            document.getElementById('iftar-time').innerText = "--:--";
+        }
+    }
+    fetchTimings();
 
+    // --- 5. ZAKAT CALCULATOR ---
+    window.calculateZakat = function() {
+        const cash = parseFloat(document.getElementById('cash').value) || 0;
+        const gold = parseFloat(document.getElementById('gold').value) || 0;
+        const business = parseFloat(document.getElementById('business').value) || 0;
+        
+        // Sum up total wealth and calculate 2.5%
+        const totalWealth = cash + gold + business;
+        const zakat = totalWealth * 0.025; 
+        
+        // Output result formatted to 2 decimal places
+        document.getElementById('zakat-result').innerText = `Total Zakat Owed: ₹${zakat.toFixed(2)}`;
+    };
+    
 });
