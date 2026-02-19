@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const prayers = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
             let savedNamaz = {};
             
-            // Try to load saved data, ignore if mobile browser blocks it
             try {
                 savedNamaz = JSON.parse(localStorage.getItem('namazTracker')) || {};
             } catch (e) { console.warn("Local storage blocked by browser"); }
@@ -44,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (suhoorEl && iftarEl) {
             async function fetchTimings() {
                 try {
-                    // Fetching daily timings specifically for Kolkata
                     const response = await fetch('https://api.aladhan.com/v1/timingsByCity?city=Kolkata&country=India&method=1');
                     const data = await response.json();
                     
@@ -100,7 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 { day: 29, challenge: "Ask for forgiveness from anyone you may have hurt this past year.", dua: "اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَٰهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ", translation: "O Allah, You are my Lord, there is none worthy of worship but You. You created me and I am Your slave." },
                 { day: 30, challenge: "Pay your Zakat al-Fitr, celebrate your efforts, and prepare for Eid!", dua: "تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ", translation: "May Allah accept [good deeds] from us and from you." }
             ];
-            
 
             const modal = document.getElementById('challenge-modal');
             const closeBtn = document.querySelector('.close-btn');
@@ -249,17 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     } catch(error) { console.error("Names error", error); }
 
-});
-
-// --- 5. ZAKAT CALCULATOR ---
-window.calculateZakat = function() {
-    const cash = parseFloat(document.getElementById('cash').value) || 0;
-    const gold = parseFloat(document.getElementById('gold').value) || 0;
-    const business = parseFloat(document.getElementById('business').value) || 0;
-    
-    const zakat = (cash + gold + business) * 0.025; 
-    document.getElementById('zakat-result').innerText = `Total Zakat Owed: ₹${zakat.toFixed(2)}`;
-    // --- 6. 30 DAYS OF SUNNAH (Only runs if on sunnah.html) ---
+    // --- 5. 30 DAYS OF SUNNAH ---
     try {
         const sunnahGrid = document.getElementById('sunnah-grid');
         if (sunnahGrid) {
@@ -323,5 +310,15 @@ window.calculateZakat = function() {
             });
         }
     } catch(error) { console.error("Sunnah error", error); }
+
+});
+
+// --- 6. ZAKAT CALCULATOR (Outside DOMContentLoaded) ---
+window.calculateZakat = function() {
+    const cash = parseFloat(document.getElementById('cash').value) || 0;
+    const gold = parseFloat(document.getElementById('gold').value) || 0;
+    const business = parseFloat(document.getElementById('business').value) || 0;
     
+    const zakat = (cash + gold + business) * 0.025; 
+    document.getElementById('zakat-result').innerText = `Total Zakat Owed: ₹${zakat.toFixed(2)}`;
 };
