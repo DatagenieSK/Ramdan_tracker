@@ -259,4 +259,69 @@ window.calculateZakat = function() {
     
     const zakat = (cash + gold + business) * 0.025; 
     document.getElementById('zakat-result').innerText = `Total Zakat Owed: ₹${zakat.toFixed(2)}`;
+    // --- 6. 30 DAYS OF SUNNAH (Only runs if on sunnah.html) ---
+    try {
+        const sunnahGrid = document.getElementById('sunnah-grid');
+        if (sunnahGrid) {
+            const sunnahData = [
+                { day: 1, title: "Smiling at Others", desc: "Smile! The Prophet (ﷺ) said: 'Your smiling in the face of your brother is charity.'", ref: "Jami` at-Tirmidhi" },
+                { day: 2, title: "Sleeping on the Right Side", desc: "Dust your bed, lie on your right side, and place your right hand under your right cheek.", ref: "Sahih al-Bukhari" },
+                { day: 3, title: "Drinking Water in 3 Breaths", desc: "Sit down to drink, say Bismillah, and drink in three separate sips/breaths rather than gulping.", ref: "Sahih Muslim" },
+                { day: 4, title: "Using the Miswak", desc: "Clean your teeth with a Miswak, especially before prayers. It is pleasing to Allah.", ref: "Sunan an-Nasa'i" },
+                { day: 5, title: "Saying Salam First", desc: "Be the first to initiate the greeting of 'As-salamu Alaykum' when meeting someone.", ref: "Sunan Abi Dawud" },
+                { day: 6, title: "Eating with the Right Hand", desc: "Say Bismillah, eat with your right hand, and eat from what is directly in front of you.", ref: "Sahih al-Bukhari" },
+                { day: 7, title: "Never Criticizing Food", desc: "If the Prophet (ﷺ) liked food, he ate it; if he didn't, he simply left it without complaining.", ref: "Sahih al-Bukhari" },
+                { day: 8, title: "Speaking Good or Remaining Silent", desc: "Guard your tongue. 'He who believes in Allah and the Last Day must either speak good or remain silent.'", ref: "Sahih Muslim" },
+                { day: 9, title: "Entering/Exiting the Bathroom", desc: "Enter with your left foot, exit with your right foot.", ref: "Sunan Ibn Majah" },
+                { day: 10, title: "Putting on Shoes", desc: "Start putting your shoes on with the right foot, and take them off starting with the left.", ref: "Sahih al-Bukhari" },
+                { day: 11, title: "Sitting Down When Angry", desc: "If you get angry while standing, sit down. If the anger remains, lie down.", ref: "Sunan Abi Dawud" },
+                { day: 12, title: "Visiting the Sick", desc: "Visit someone who is unwell. The angels pray for you when you do so.", ref: "Jami` at-Tirmidhi" },
+                { day: 13, title: "Saying Alhamdulillah After Sneezing", desc: "When you sneeze, say 'Alhamdulillah'. If someone else sneezes and praises Allah, reply 'Yarhamukallah'.", ref: "Sahih al-Bukhari" },
+                { day: 14, title: "Making Dua for Others in Secret", desc: "Make Dua for a friend/relative behind their back. An angel replies: 'Ameen, and to you the same.'", ref: "Sahih Muslim" },
+                { day: 15, title: "Forgiving Others Before Sleep", desc: "Cleanse your heart of any grudges or ill feelings towards anyone before going to bed.", ref: "Sunan Ibn Majah" },
+                { day: 16, title: "Removing Obstacles from the Path", desc: "Move a branch, rock, or any harmful object out of the walking path. It is a branch of faith.", ref: "Sahih Muslim" },
+                { day: 17, title: "Wearing Perfume (Ittar)", desc: "Apply a pleasant scent (for men in public, for women at home). The Prophet (ﷺ) loved good scents.", ref: "Sunan an-Nasa'i" },
+                { day: 18, title: "Trimming Nails on Friday", desc: "Cut your nails and groom yourself as part of your Friday (Jumu'ah) preparation.", ref: "Sahih Muslim" },
+                { day: 19, title: "Saying Bismillah for All Tasks", desc: "Start cooking, working, driving, or any mundane task in the Name of Allah.", ref: "Sunan Abi Dawud" },
+                { day: 20, title: "Sleeping Early", desc: "Avoid unnecessary late-night talks. Sleep soon after Isha to wake up fresh for Tahajjud and Fajr.", ref: "Sahih al-Bukhari" },
+                { day: 21, title: "Keeping Promises", desc: "If you give someone your word, fulfill it completely. It is a core trait of a believer.", ref: "Sahih al-Bukhari" },
+                { day: 22, title: "Being Kind to Neighbors", desc: "Share some food with your neighbor or simply check in on them.", ref: "Sahih Muslim" },
+                { day: 23, title: "Expressing Gratitude to People", desc: "'He who does not thank the people is not thankful to Allah.' Express your appreciation today.", ref: "Sunan Abi Dawud" },
+                { day: 24, title: "Covering the Mouth When Yawning", desc: "Try to suppress a yawn, and if you cannot, cover your mouth with your hand.", ref: "Sahih al-Bukhari" },
+                { day: 25, title: "Saying Bismillah When Entering the House", desc: "Enter your home with the right foot and mention Allah's name. It keeps Shaytan out.", ref: "Sahih Muslim" },
+                { day: 26, title: "Not Getting Angry", desc: "A man asked the Prophet (ﷺ) for advice, and he said: 'Do not become angry' and repeated it.", ref: "Sahih al-Bukhari" },
+                { day: 27, title: "Eating Together", desc: "Eat your meals with your family rather than alone. There is blessing in eating together.", ref: "Sunan Abi Dawud" },
+                { day: 28, title: "Visiting Graves", desc: "Visit the graveyard to remind yourself of the Hereafter and make Dua for the deceased.", ref: "Sahih Muslim" },
+                { day: 29, title: "Looking at Those Below You", desc: "Look at those who have less wealth or health than you, so you do not belittle Allah's blessings.", ref: "Sahih Muslim" },
+                { day: 30, title: "Sending Salawat on Friday", desc: "Increase your blessings upon the Prophet (ﷺ) on Fridays, as it is presented directly to him.", ref: "Sunan Abi Dawud" }
+            ];
+
+            const sunnahModal = document.getElementById('sunnah-modal');
+            const closeSunnahBtn = document.getElementById('close-sunnah');
+
+            for(let i = 1; i <= 30; i++) {
+                const dayDiv = document.createElement('div');
+                dayDiv.className = 'day-card';
+                dayDiv.innerText = `Day ${i}`;
+                
+                dayDiv.addEventListener('click', () => {
+                    const data = sunnahData.find(d => d.day === i);
+                    if(data) {
+                        document.getElementById('modal-sunnah-day').innerText = `Sunnah Day ${i}`;
+                        document.getElementById('modal-sunnah-title').innerText = data.title;
+                        document.getElementById('modal-sunnah-desc').innerText = data.desc;
+                        document.getElementById('modal-sunnah-ref').innerText = `Reference: ${data.ref}`;
+                        sunnahModal.style.display = 'flex';
+                    }
+                });
+                sunnahGrid.appendChild(dayDiv);
+            }
+
+            if(closeSunnahBtn) closeSunnahBtn.addEventListener('click', () => sunnahModal.style.display = 'none');
+            window.addEventListener('click', (e) => {
+                if (e.target == sunnahModal) sunnahModal.style.display = 'none';
+            });
+        }
+    } catch(error) { console.error("Sunnah error", error); }
+    
 };
