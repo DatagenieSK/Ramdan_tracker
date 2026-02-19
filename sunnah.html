@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>30 Days of Sunnah</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <h1>🌙 Ramadan Companion</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="sunnah.html" class="active">Daily Sunnah</a>
+            <a href="names.html">99 Names of Allah</a>
+            <a href="zakat.html">Zakat Calculator</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="sunnah" class="fade-in">
+            <h2>30 Days of Sunnah</h2>
+            <p>Revive one simple Sunnah of Prophet Muhammad (ﷺ) each day.</p>
+            <div class="grid-container" id="sunnah-grid"></div>
+            
+            <div id="sunnah-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn" id="close-sunnah">&times;</span>
+                    <h3 id="modal-sunnah-day">Day X</h3>
+                    <h4 class="gold-text" id="modal-sunnah-title">Sunnah Title</h4>
+                    <p id="modal-sunnah-desc"></p>
+                    <p class="gold-text" style="font-size: 0.85rem; margin-top: 15px;" id="modal-sunnah-ref"></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
