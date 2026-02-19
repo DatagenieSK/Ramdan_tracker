@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zakat Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <h1>🌙 Ramadan Companion</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="names.html">99 Names of Allah</a>
+            <a href="zakat.html" class="active">Zakat Calculator</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="zakat" class="fade-in">
+            <h2>Zakat Calculator</h2>
+            <p>Calculate your obligatory 2.5% Zakat easily.</p>
+            <div class="zakat-form">
+                <div class="input-group">
+                    <label>Cash & Bank Savings (₹):</label>
+                    <input type="number" id="cash" placeholder="0">
+                </div>
+                <div class="input-group">
+                    <label>Gold & Silver Value (₹):</label>
+                    <input type="number" id="gold" placeholder="0">
+                </div>
+                <div class="input-group">
+                    <label>Business Inventory & Stock (e.g., Dulhan Bangles value in ₹):</label>
+                    <input type="number" id="business" placeholder="0">
+                </div>
+                
+                <button onclick="calculateZakat()">Calculate Zakat</button>
+                <h3 class="gold-text" id="zakat-result" style="margin-top: 20px;">Total Zakat Owed: ₹0.00</h3>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
