@@ -1,0 +1,217 @@
+:root {
+    --bg-color: #0d1b14;
+    --text-light: #f4f4f4;
+    --gold: #d4af37;
+    --card-bg: #162b20;
+    --card-hover: #1e3a2b;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-light);
+    text-align: center;
+}
+
+.arabic {
+    font-family: 'Amiri', serif;
+    font-size: 1.8rem;
+    color: var(--gold);
+    margin: 10px 0;
+}
+
+header {
+    background-color: var(--card-bg);
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+header h1 {
+    color: var(--gold);
+    margin-bottom: 10px;
+}
+
+nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--gold);
+}
+
+section {
+    padding: 60px 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 20px 0;
+}
+
+/* Animations */
+.fade-in {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Tracker Styles */
+.tracker-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.namaz-card {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 10px;
+    width: 120px;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+    border: 1px solid var(--gold);
+}
+
+.namaz-card:hover {
+    transform: translateY(-5px);
+    background: var(--card-hover);
+}
+
+.namaz-card input {
+    margin-top: 10px;
+    transform: scale(1.5);
+    cursor: pointer;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: var(--gold);
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #b5952f;
+}
+
+/* Grid & Modals */
+.grid-container, .names-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.day-card {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    border: 1px solid transparent;
+}
+
+.day-card:hover {
+    border-color: var(--gold);
+    transform: scale(1.05);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 200;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    border: 2px solid var(--gold);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px; right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--gold);
+}
+
+.gold-text { color: var(--gold); margin-top: 15px; }
+
+/* 3D Flip Card for 99 Names */
+.flip-card {
+    background-color: transparent;
+    height: 150px;
+    perspective: 1000px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%; height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%; height: 100%;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid var(--gold);
+}
+
+.flip-card-front {
+    background-color: var(--card-bg);
+}
+
+.flip-card-back {
+    background-color: var(--gold);
+    color: #000;
+    transform: rotateY(180deg);
+}
